@@ -1,8 +1,8 @@
-package ua.com.mytodo.dao;
+package ua.com.mytodo.service;
 
 import java.util.List;
 
-public interface CrudDao<T,ID> {
+public interface CrudService<T, ID> {
     void save(T t);
     List<T> findAll();
     void changeName(T t);

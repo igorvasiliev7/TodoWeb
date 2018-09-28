@@ -13,17 +13,20 @@ import java.util.List;
 
 public class TodoDaoImpl implements TodoDao {
 
-    private static final String INSERT_PROJ = "INSERT INTO projects (name) VALUES (?)";
-    private static final String INSERT_USER = "INSERT INTO project_users ( project_id, user_id) VALUES (?,?)";
-    private static final String SELECT_PROJECTS =
-            "select p.id, p.name from project_users pu, projects p WHERE pu.user_id=? AND pu.project_id=p.id;";
-    private static final String SELECT_FELLOWS =
-            "select u.id, u.name_user from project_users pu, users u WHERE pu.user_id=? AND pu.project_id=u.id;";
-    private static final String SELECT_ALL = "select * from todos;";
+    private static final String INSERT_TODO = "INSERT INTO todos ( name) VALUES (?)";
+    private static final String SELECT_ALL = "SELECT * FROM todos;";
+    private static final String UPDATE_TODO = "UPDATE todos SET name=? WHERE id=?;";
+    private static final String DELETE_TODO = "DELETE FROM todos WHERE id=?;";
 
     @Override
     public void save(Todo todo) {
-
+        try (Connection connection = DatabaseSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_TODO)) {
+            preparedStatement.setString(1, todo.getName());
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -42,15 +45,28 @@ public class TodoDaoImpl implements TodoDao {
             e.printStackTrace();
         }
         return todos;
-          }
-
-    @Override
-    public Todo changeName(Long aLong) {
-        return null;
     }
 
     @Override
-    public void delete(Long aLong) {
+    public void changeName(Todo todo) {
+        try (Connection connection = DatabaseSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TODO)) {
+           preparedStatement.setString(1, todo.getName());
+           preparedStatement.setLong(2, todo.getId());
+           preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
+    @Override
+    public void delete(Long id) {
+        try (Connection connection = DatabaseSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_TODO)) {
+            preparedStatement.setLong(1, id);
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
