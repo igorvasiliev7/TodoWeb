@@ -13,8 +13,8 @@
   </head>
   <body>
   <div class="container">
-  <button type="button" class="btn btn-primary">Log In</button>
-  <button type="button" class="btn btn-secondary">Registration</button>
+  <button formaction="/login.jsp" type="button" class="btn btn-primary">Log In</button>
+  <button formaction="/registration.jsp" type="button" class="btn btn-secondary">Registration</button>
   </div>
   </body>
 
