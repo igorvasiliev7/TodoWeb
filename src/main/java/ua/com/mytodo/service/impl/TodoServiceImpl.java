@@ -7,6 +7,7 @@ import ua.com.mytodo.service.TodoService;
 import java.util.List;
 
 public class TodoServiceImpl implements TodoService {
+
     @Override
     public void save(Todo todo) {
         DaoFactory.getTodoDaoImpl().save(todo);
@@ -14,7 +15,6 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public List<Todo> findAll() {
-
         return DaoFactory.getTodoDaoImpl().findAll();
     }
 
@@ -26,5 +26,10 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public void delete(Long id) {
         DaoFactory.getTodoDaoImpl().delete(id);
+    }
+
+    @Override
+    public List<Todo> todosByUserId(Long id) {
+        return DaoFactory.getTodoDaoImpl().todosByUserId(id);
     }
 }

@@ -27,4 +27,9 @@ public class UserServiceImpl implements UserService {
     public void delete(Long id) {
     DaoFactory.getUserDaoImpl().delete(id);
     }
+
+    @Override
+    public User findByEmail(String email) {
+        return DaoFactory.getUserDaoImpl().findByEmail(email);
+    }
 }

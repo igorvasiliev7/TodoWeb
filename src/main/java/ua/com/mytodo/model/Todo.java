@@ -4,6 +4,15 @@ public class Todo {
 
     private Long id;
     private String name;
+    private Long status;
+
+    public Long getStatus() {
+        return status;
+    }
+
+    public void setStatus(Long statusId) {
+        this.status = status;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -26,6 +35,7 @@ public class Todo {
         return "Todo{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", status=" + status +
                 '}';
     }
 }
