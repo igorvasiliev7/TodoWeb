@@ -14,7 +14,7 @@
 
 <div align="center">
     <p>Error page</p>
-    <a href="index.jsp">Go back</a>
+    <a href="/index.jsp">Go back</a>
 </div>
 
 </body>

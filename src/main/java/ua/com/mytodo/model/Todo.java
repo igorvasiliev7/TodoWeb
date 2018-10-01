@@ -10,7 +10,7 @@ public class Todo {
         return status;
     }
 
-    public void setStatus(Long statusId) {
+    public void setStatus(Long status) {
         this.status = status;
     }
 

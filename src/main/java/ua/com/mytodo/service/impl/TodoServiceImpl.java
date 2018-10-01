@@ -1,6 +1,7 @@
 package ua.com.mytodo.service.impl;
 
 import ua.com.mytodo.dao.factory.DaoFactory;
+import ua.com.mytodo.dto.TodoDTO;
 import ua.com.mytodo.model.Todo;
 import ua.com.mytodo.service.TodoService;
 
@@ -29,7 +30,7 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public List<Todo> todosByUserId(Long id) {
-        return DaoFactory.getTodoDaoImpl().todosByUserId(id);
+    public List<TodoDTO> findByUserId(Long id) {
+        return DaoFactory.getTodoDaoImpl().findByUserId(id);
     }
 }
